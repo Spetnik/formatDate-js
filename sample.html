@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>formatDate-js Sample</title>
+		<style type="text/css">
+			body{font-family:sans-serif;font-size:18px;color:#444;}
+			button{width:120px;height:40px;background-color:#fff;color:#047;border:1px solid #047;border-radius:4px;font-weight:bold;cursor:pointer;}
+			button:hover{background-color:#047;color:#fff;}
+			table{margin:0px auto 0px auto;}
+			td>div{margin:2px 10px;height:30px;padding-top:6px;width:250px;border:2px dashed #ddd;text-align: center;}
+		</style>
+		<script type="text/javascript" src="formatdate-0.1.js"></script>
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+		<script type="text/javascript">
+			$(function(){
+				$('button').click(function(){var $button=$(this);$($('tr').filter(function(){return $(this).index()==$button.parent().parent().index();})).find("td>div").text(formatDate(new Date(),$(this).text()));})
+			});
+		</script>
+	</head>
+	<body>
+		<table>
+			<tr>
+				<td>
+					<button>%Y-%m-%d</button>
+				</td>
+				<td><div></div></td>
+			</tr>
+			<tr>
+				<td>
+					<button>%W, %M %c, %Y</button>
+				</td>
+				<td><div></div></td>
+			</tr>
+			<tr>
+				<td>
+					<button>%d %b %y</button>
+				</td>
+				<td><div></div></td>
+			</tr>
+			<tr>
+				<td>
+					<button>%c/%d/%y</button>
+				</td>
+				<td><div></div></td>
+			</tr>
+
+		</table>
+	</body>
+</html>
