@@ -27,7 +27,7 @@ var formatDate = function(date, format, utc){
 		'%M': function(){return ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"][utc ? date.getUTCMonth() : date.getMonth()];},
 		'%m': function(){return pad(this["%c"](), 2);},
 		'%p': function(){return this["%H"]() > 11 ? "PM" : "AM";},
-		'%r': function(){},
+		'%r': function(){return this["%h"]() + ":" + this["%i"]() + ":" + this["%S"]() + " " + this["%p"]()},
 		'%S': function(){return pad(utc?date.getUTCSeconds():date.getSeconds(),2);},
 		'%s': function(){return this["%S"]();},
 		'%T': function(){return this["%h"]()+":"+this["%i"]()+this["%S"]()+" "+this["%p"]();},
