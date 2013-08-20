@@ -13,7 +13,9 @@
 		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 		<script type="text/javascript">
 			$(function(){
-				$('button').click(function(){var $button=$(this);$($('tr').filter(function(){return $(this).index()==$button.parent().parent().index();})).find("td>div").text(formatDate(new Date(),$(this).text()));})
+				$('button').click(function(){var $button=$(this);$($('tr').filter(function(){return $(this).index()==$button.parent().parent().index();})).find("td>div").text(
+					formatDate(new Date(),$(this).text())
+				);})
 			});
 		</script>
 	</head>

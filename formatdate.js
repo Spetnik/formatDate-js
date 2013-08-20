@@ -12,7 +12,7 @@ var formatDate = function(date, format, utc){
 		'%b': function(){
 			return ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"][utc ? date.getUTCMonth() : date.getMonth()];
 		},
-		'%c': function(){return utc ? date.getUTCMonth() + 1 : date.getMonth();},
+		'%c': function(){return utc ? date.getUTCMonth() + 1 : date.getMonth() + 1;},
 		'%D': function(){/*Day of the month with English suffix (0th, 1st, 2nd, 3rd, …)*/},
 		'%d': function(){return pad(utc?date.getUTCDate():date.getDate(),2);},
 		'%e': function(){return utc?date.getUTCDate():date.getDate();},
