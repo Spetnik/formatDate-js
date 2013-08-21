@@ -25,10 +25,10 @@ Formatting specifiers:
 	%a			Abbreviated weekday name (Sun..Sat)
 	%b			Abbreviated month name (Jan..Dec)
 	%c			Month, numeric (0..12)
-	%D* 		Day of the month with English suffix (0th, 1st, 2nd, 3rd, …)
+	%D			Day of the month with English suffix (0th, 1st, 2nd, 3rd, …)
 	%d			Day of the month, numeric (00..31)
 	%e			Day of the month, numeric (0..31)
-	%f*			Microseconds (000000..999999)
+	%f**		Milliseconds (000..999)
 	%H			Hour (00..23)
 	%h			Hour (01..12)
 	%I			Hour (01..12)
@@ -53,7 +53,8 @@ Formatting specifiers:
 	%x*			Year for the week, where Monday is the first day of the week, numeric, four digits; used with %v
 	%Y			Year, numeric, four digits
 	%y			Year, numeric (two digits)
-	%%*			A literal “%” character
-	%x			x, for any “x” not listed above
+	%%			A literal “%” character
+	%?			?, for any “?” not listed above
 
 	* Not yet supported
+	** The MySQL DATE_FORMAT() %f specifier returns Microseconds (000000..999999)

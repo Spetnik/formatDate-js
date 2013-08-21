@@ -7,12 +7,13 @@
 			button{width:120px;height:40px;background-color:#fff;color:#047;border:1px solid #047;border-radius:4px;font-weight:bold;cursor:pointer;}
 			button:hover{background-color:#047;color:#fff;}
 			table{margin:0px auto 0px auto;}
-			td>div{margin:2px 10px;height:30px;padding-top:6px;width:250px;border:2px dashed #ddd;text-align: center;}
+			td>div{margin:2px 10px;height:30px;padding-top:6px;width:280px;border:2px dashed #ddd;text-align: center;}
 		</style>
 		<script type="text/javascript" src="formatdate.js"></script>
 		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 		<script type="text/javascript">
 			$(function(){
+				//Set DIV text to formatted current date according to specifier text of corresponding BUTTON
 				$('button').click(function(){var $button=$(this);$($('tr').filter(function(){return $(this).index()==$button.parent().parent().index();})).find("td>div").text(
 					formatDate(new Date(),$(this).text())
 				);})
@@ -29,7 +30,7 @@
 			</tr>
 			<tr>
 				<td>
-					<button>%W, %M %c, %Y</button>
+					<button>%W, %M %D, %Y</button>
 				</td>
 				<td><div></div></td>
 			</tr>
@@ -48,6 +49,18 @@
 			<tr>
 				<td>
 					<button>%r</button>
+				</td>
+				<td><div></div></td>
+			</tr>
+			<tr>
+				<td>
+					<button>%T</button>
+				</td>
+				<td><div></div></td>
+			</tr>
+			<tr>
+				<td>
+					<button>%g %%c%%%c</button>
 				</td>
 				<td><div></div></td>
 			</tr>

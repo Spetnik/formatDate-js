@@ -9,14 +9,15 @@ var formatDate = function(date, format, utc){
 
 	var formats = {
 		'%a': function(){return ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"][utc ? date.getUTCDay() : date.getDay()];},
-		'%b': function(){
-			return ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"][utc ? date.getUTCMonth() : date.getMonth()];
-		},
+		'%b': function(){return ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"][utc ? date.getUTCMonth() : date.getMonth()];},
 		'%c': function(){return utc ? date.getUTCMonth() + 1 : date.getMonth() + 1;},
-		'%D': function(){/*Day of the month with English suffix (0th, 1st, 2nd, 3rd, …)*/},
+		'%D': function(){
+			var t, n=this["%e"](), nn=parseInt(n.toString().substr(-2));
+			return nn>3&&nn<21?n+"th":t=["th","st","nd","rd"][n.toString().substr(-1)],n+(t==null?"th":t);
+		},
 		'%d': function(){return pad(utc?date.getUTCDate():date.getDate(),2);},
 		'%e': function(){return utc?date.getUTCDate():date.getDate();},
-		'%f': function(){/*milliseconds, not microseconds*/return utc?date.getUTCMilliseconds():date.getMilliseconds();},
+		'%f': function(){return pad(utc?date.getUTCMilliseconds():date.getMilliseconds(),3);},
 		'%H': function(){return pad(this["%k"](), 2);},
 		'%h': function(){return pad(this["%l"](), 2);},
 		'%I': function(){return this["%h"]();},
@@ -30,7 +31,7 @@ var formatDate = function(date, format, utc){
 		'%r': function(){return this["%h"]() + ":" + this["%i"]() + ":" + this["%S"]() + " " + this["%p"]()},
 		'%S': function(){return pad(utc?date.getUTCSeconds():date.getSeconds(),2);},
 		'%s': function(){return this["%S"]();},
-		'%T': function(){return this["%h"]()+":"+this["%i"]()+this["%S"]()+" "+this["%p"]();},
+		'%T': function(){return this["%H"]()+":"+this["%i"]()+":" + this["%S"]();},
 		'%U': function(){/*Week (00..53), where Sunday is the first day of the week*/},
 		'%u': function(){/*Week (00..53), where Monday is the first day of the week*/},
 		'%V': function(){/*Week (01..53), where Sunday is the first day of the week; used with %X*/},
@@ -40,13 +41,17 @@ var formatDate = function(date, format, utc){
 		'%X': function(){/*Year for the week where Sunday is the first day of the week, numeric, four digits; used with %V*/},
 		'%x': function(){/*Year for the week, where Monday is the first day of the week, numeric, four digits; used with %v*/},
 		'%Y': function(){return utc?date.getUTCFullYear():date.getFullYear();},
-		'%y': function(){return (utc?date.getUTCFullYear():date.getFullYear()).toString().substring(2);}
+		'%y': function(){return (utc?date.getUTCFullYear():date.getFullYear()).toString().substring(2);},
+		'%%': function(){return "%"}
 	};
 
-	var output = format;
+	var replacer = function(match){
+		if(formats[match] == null)
+			return match.substr(1,1);
 
-	for(var f in formats){
-		output = output.replace(f, formats[f]());
+		return formats[match]();
 	}
-	return output;
+
+	return format.replace(/\%.?/g, replacer);
+
 };
