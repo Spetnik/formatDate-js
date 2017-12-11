@@ -1,3 +1,9 @@
+## Obsolete - this library is no longer supported
+### If you are using this and not [Moment.js](https://momentjs.com/), then you are on your own.
+#### It's fun to write your own utility, but it's kind of silly to use it in production when there are better solutions out there.
+
+___
+
 formatDate-js
 =============
 
